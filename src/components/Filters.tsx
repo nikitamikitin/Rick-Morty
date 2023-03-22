@@ -10,6 +10,7 @@ import { FC, useState } from "react";
 import ICharacterFilter from "../models/ICharacterFilter";
 
 enum ISpecies {
+  'All'="All",
   'human' = 'Human',
   'alien' = 'Alien',
   'humanoid' = 'Humanoid',
@@ -24,9 +25,9 @@ enum ISpecies {
 
 
 
-const optionsStatus=[{title:'Alive',value:'Alive'},{title:'Dead',value:'Dead'},{title:'Unknown',value:'unknown'}]
+const optionsStatus=[{title:'All',value:'All'},{title:'Alive',value:'Alive'},{title:'Dead',value:'Dead'},{title:'Unknown',value:'unknown'}]
 
-const optionsGenders=[{title:'Female',value:'female'},{title:'Male',value:'male'},{title:'Genderless',value:'genderless'},{title:'Unknown',value:'unknown'}]
+const optionsGenders=[{title:'All',value:'All'},{title:'Female',value:'female'},{title:'Male',value:'male'},{title:'Genderless',value:'genderless'},{title:'Unknown',value:'unknown'}]
 
 type Props={
   filterCardsCallback:(type:string,value:string)=>void
@@ -43,11 +44,12 @@ const Filters: FC<Props> = ({filterCardsCallback,filter}) => {
     filterCardsCallback(event.target.value,"status")
   };
 
-  const handleChangeGender = (event: SelectChangeEvent) => {
+  const handleChangeGender = (event: SelectChangeEvent) => {  
     filterCardsCallback(event.target.value,"gender")
   };
+
   return (
-    <Box sx={{ minWidth: 120 ,display: 'flex',flexDirection:'row',gap:'50px ',marginTop:'20px' }}>
+    <Box sx={{ minWidth: 120 ,display: 'flex',flexDirection: { xs: 'column',sm:'row'},gap:'50px ',margin:'30px' }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Species</InputLabel>
         <Select

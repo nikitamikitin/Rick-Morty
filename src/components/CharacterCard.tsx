@@ -1,4 +1,5 @@
 import {
+  Box,
   Card,
   CardActionArea,
   CardContent,
@@ -18,14 +19,15 @@ const CharacterCard: FC<Props> = ({ characterModel, dialogOpen }) => {
     dialogOpen(characterModel);
   };
 
+
   return (
-    <div>
+    <Box sx={{ width: {xs: '100%',sm: 258} }}>
       {characterModel && (
-        <Card sx={{ width: 258 }}>
+        <Card sx={{ width: {xs: '100%',sm: 258} }}>
           <CardActionArea onClick={() => openDialog(characterModel)}>
-            <CardMedia
-              sx={{ height: 300 }}
-              image={characterModel.image}
+            <Box component="img"
+              sx={{ height: {sm: 300} ,width:"100%"}}
+              src={characterModel.image}
               title={characterModel.name}
             />
             <CardContent
@@ -41,7 +43,7 @@ const CharacterCard: FC<Props> = ({ characterModel, dialogOpen }) => {
           </CardActionArea>
         </Card>
       )}
-    </div>
+    </Box>
   );
 };
 

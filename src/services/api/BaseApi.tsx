@@ -15,7 +15,7 @@ const BaseAPI = {
         page,
         ...filter
       }
-    }).then((r) => r.data)
+    }).then((r) => r.data).catch(()=>[])
   },
 
   async episodes(){

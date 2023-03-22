@@ -21,7 +21,7 @@ type Props = {
 
 const CharacterDialogInfo: FC<Props> = ({ characterInfo,open,onClose}) => {
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Dialog
       fullScreen={fullScreen}
@@ -32,7 +32,8 @@ const CharacterDialogInfo: FC<Props> = ({ characterInfo,open,onClose}) => {
       <DialogTitle id="responsive-dialog-title" textAlign="center">
         {"Character Information"}
       </DialogTitle>
-      <DialogContent sx={{ display: "flex", gap: "30px" }}>
+      
+      <DialogContent sx={{ display: 'flex',flexDirection:{xs: 'column',sm:'row'} ,alignItems:{xs: 'center'},gap:"10px"}}>
         <Box
           component="img"
           sx={{
@@ -44,7 +45,7 @@ const CharacterDialogInfo: FC<Props> = ({ characterInfo,open,onClose}) => {
           alt={characterInfo?.name}
           src={characterInfo?.image}
         />
-        <Box sx={{display:'flex',flexDirection:'column',gap:"20px"}}>
+        <Box sx={{display:'flex',flexDirection:'column', gap: {xs: "5px"},alignItems:{xs:'center',sm:'start'},width:{xs:'100%'}}}>
           <DialogContentText>Name: {characterInfo?.name}</DialogContentText>
         <DialogContentText>Gender: {characterInfo?.gender}</DialogContentText>
         <DialogContentText>Species: {characterInfo?.species}</DialogContentText>

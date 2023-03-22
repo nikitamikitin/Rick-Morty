@@ -26,8 +26,9 @@ const CharacterLayout:  FC = ({}) => {
 
 
   const filterCards=(value: string, key: string)=>{
-    setFilter({ ...filter, [key]: value });
+    setFilter({ ...filter, [key]: value==="All" ? "": value });
     setPage(1)
+    
   }
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
@@ -66,7 +67,7 @@ const CharacterLayout:  FC = ({}) => {
         )}
       </div>
       <Grid marginTop={4}>
-        <Grid container justifyContent="center" alignItems="center" gap={4}>
+        <Grid container justifyContent="center" alignItems="center" gap={4} padding={5}>
           {characterList?.map((item) => {
             return (
               <CharacterCard
@@ -84,7 +85,7 @@ const CharacterLayout:  FC = ({}) => {
             alignItems="center"
             marginTop={4}
           >
-            <Stack spacing={1}>
+            <Stack marginBottom={3}>
               <Pagination
                 count={characterInfo?.pages}
                 page={page}
