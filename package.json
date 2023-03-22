@@ -2,11 +2,11 @@
   "name": "rick_morty",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://gitname.github.io/rick_morty",
+  "homepage": "https://nikitamikitin.github.io/Rick-Morty",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
-   "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
