@@ -26,7 +26,7 @@ const CharacterCard: FC<Props> = ({ characterModel, dialogOpen }) => {
         <Card sx={{ width: {xs: '100%',sm: 258} }}>
           <CardActionArea onClick={() => openDialog(characterModel)}>
             <Box component="img"
-              sx={{ height: {sm: 300} ,width:"100%"}}
+              sx={{ height: {sm: '100%'} ,width:"100%"}}
               src={characterModel.image}
               title={characterModel.name}
             />

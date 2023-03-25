@@ -41,9 +41,9 @@ const WatchList = () => {
         JSON.stringify([...episodes, { chosenEpisode, watched: false }])
       );
       setLSEpisodes(getLSEpisodes());
-      console.log("Added new episode");
+    
     } else {
-      console.log("Episode already exists");
+      
     }
   };
   const handleRemoveEpisode=(item:LSData)=>{

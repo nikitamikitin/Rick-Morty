@@ -15,7 +15,14 @@ const BaseAPI = {
         page,
         ...filter
       }
-    }).then((r) => r.data).catch(()=>[])
+    }).then((r) => r.data).catch((e)=>{
+      if (e.response && e.response.status==404){
+        return []
+      }
+      else{
+        return 'error'
+      }
+    })
   },
 
   async episodes(){

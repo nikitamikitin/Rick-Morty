@@ -11,18 +11,15 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
 import { FC } from "react";
+import { useNavigate } from 'react-router-dom';
 const pages = ['Characters','My watch list'];
 
-type Props = {
-    handleOpenCharacterPage:() => void;
-    handleOpenWatchList:()=>void;
-};
 
 
-const NavigationBar: FC<Props> = ({ handleOpenCharacterPage,handleOpenWatchList}) => {
+const NavigationBar = () => {
    
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
-
+  const history = useNavigate();
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -30,10 +27,10 @@ const NavigationBar: FC<Props> = ({ handleOpenCharacterPage,handleOpenWatchList}
   const handleCloseNavMenu = (page: string) => {
     switch (page){
       case 'Characters':
-        handleOpenCharacterPage();
+        history('/Rick-Morty/characters');
         break
       case 'My watch list':
-        handleOpenWatchList()
+        history('/Rick-Morty/watchList');
         break
     }
     setAnchorElNav(null);

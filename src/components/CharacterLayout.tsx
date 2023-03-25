@@ -1,4 +1,4 @@
-import { Grid, Pagination, Stack, Typography } from "@mui/material";
+import { Box, Grid, Pagination, Skeleton, Stack, Typography } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import CharacterInfo from "../models/CharacterInfo";
 import CharacterModel from "../models/CharacterModel";
@@ -8,7 +8,7 @@ import CharacterCard from "./CharacterCard";
 import CharacterDialogInfo from "./CharacterDialogInfo";
 import Filters from "./Filters";
 
-const CharacterLayout:  FC = ({}) => {
+const CharacterLayout: FC = ({}) => {
   const [characterInfo, setCharacterInfo] = useState<CharacterInfo | undefined>(
     undefined
   );
@@ -19,25 +19,23 @@ const CharacterLayout:  FC = ({}) => {
     CharacterModel | undefined
   >(undefined);
   const [page, setPage] = useState(1);
-  
+  const [filterError, setFilterError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-   //filter fields
-   const [filter, setFilter] = useState<ICharacterFilter>(getDefaultFilter());
+  //filter fields
+  const [filter, setFilter] = useState<ICharacterFilter>(getDefaultFilter());
 
-
-  const filterCards=(value: string, key: string)=>{
-    setFilter({ ...filter, [key]: value==="All" ? "": value });
-    setPage(1)
-    
-  }
+  const filterCards = (value: string, key: string) => {
+    setFilter({ ...filter, [key]: value === "All" ? "" : value });
+    setPage(1);
+    setFilterError(false);
+  };
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
 
-  const handleOpenDialogOpen = (
-    chosenCharacter: CharacterModel
-  ) => {
+  const handleOpenDialogOpen = (chosenCharacter: CharacterModel) => {
     setchosenCharacter(chosenCharacter);
   };
 
@@ -45,20 +43,33 @@ const CharacterLayout:  FC = ({}) => {
     setchosenCharacter(undefined);
   };
 
-
   useEffect(() => {
-    BaseAPI.characters(page,filter).then((r) => {
-      setCharacterInfo(r.info);
-      setcharacterList(r.results);
-    });
-  }, [page,filter]);
+    setLoading(true)
+    BaseAPI.characters(page, filter).then((r) => {
+      if (r.results == characterList && r.info == characterInfo) {
+        return;
+      } else {
+        setCharacterInfo(r.info);
+        setcharacterList(r.results);
+      }
+      if (r.length == 0) {
+        setFilterError(true);
+      }
+      if (r!="error"){
+        setLoading(false)
+      }
+    }).catch((e)=>console.log(e));
+
+    
+  }, [page, filter]);  
 
   return (
     <>
+        
       <Filters filter={filter} filterCardsCallback={filterCards}></Filters>
 
       <div>
-        {chosenCharacter  && (
+        {chosenCharacter && (
           <CharacterDialogInfo
             characterInfo={chosenCharacter}
             open={!!chosenCharacter}
@@ -67,8 +78,14 @@ const CharacterLayout:  FC = ({}) => {
         )}
       </div>
       <Grid marginTop={4}>
-        <Grid container justifyContent="center" alignItems="center" gap={4} padding={5}>
-          {characterList?.map((item) => {
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          gap={4}
+          padding={5}
+        >
+          {loading ? (Array.from(Array(20)).map((item,index)=>{return <Skeleton key={index} variant="rectangular" width={210} height={118} />})):(characterList?.map((item) => {
             return (
               <CharacterCard
                 characterModel={item}
@@ -76,7 +93,8 @@ const CharacterLayout:  FC = ({}) => {
                 key={item.id}
               ></CharacterCard>
             );
-          })}
+          })) }
+          {filterError && <Box><Typography>No data with this filter values.Please Try Again</Typography></Box>}
         </Grid>
         {characterInfo && (
           <Grid
@@ -101,7 +119,6 @@ const CharacterLayout:  FC = ({}) => {
 
 export default CharacterLayout;
 
-
 function getDefaultFilter(): ICharacterFilter {
-  return {species:"",status:"",gender:""}
+  return { species: "", status: "", gender: "" };
 }
