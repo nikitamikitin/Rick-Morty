@@ -58,7 +58,7 @@ const CharacterLayout: FC = ({}) => {
       if (r!="error"){
         setLoading(false)
       }
-    }).catch((e)=>console.log(e));
+    })
 
     
   }, [page, filter]);  

@@ -6,17 +6,6 @@ import NavigationBar from "./components/NavigationBar";
 import WatchList from "./components/WatchList";
 
 const App = () => {
-  const [isCharacterCardisOpen, setCharacterCardisOpen] =
-    useState<boolean>(false);
-  const [isWatchListOpen, setWatchListOpen] = useState<boolean>(false);
-  const openCharacterPage = () => {
-    setWatchListOpen(false);
-    setCharacterCardisOpen(true);
-  };
-  const handleOpenWatchList = () => {
-    setCharacterCardisOpen(false);
-    setWatchListOpen(true);
-  };
   return (
     <Routes>
       <Route
