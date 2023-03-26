@@ -49,7 +49,7 @@ const Filters: FC<Props> = ({filterCardsCallback,filter}) => {
   };
 
   return (
-    <Box sx={{ minWidth: 120 ,display: 'flex',flexDirection: { xs: 'column',sm:'row'},gap:'50px ',margin:'30px' }}>
+    <Box sx={{ minWidth: 120 ,display: 'flex',flexDirection: { xs: 'column',sm:'row'},gap:'16px ',padding:'16px' }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Species</InputLabel>
         <Select
