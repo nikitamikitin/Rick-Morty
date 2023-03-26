@@ -25,10 +25,13 @@ const CharacterLayout: FC = ({}) => {
   //filter fields
   const [filter, setFilter] = useState<ICharacterFilter>(getDefaultFilter());
 
-  const filterCards = (value: string, key: string) => {
-    setFilter({ ...filter, [key]: value === "All" ? "" : value });
-    setPage(1);
-    setFilterError(false);
+  const filterCards = (value: string, key: keyof ICharacterFilter) => {
+    const formattedValue = value === 'All' ? '' : value
+    if (filter[key] !== formattedValue) {
+      setFilter({ ...filter, [key]: formattedValue });
+      setPage(1);
+      setFilterError(false);
+    }
   };
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {

@@ -30,7 +30,7 @@ const optionsStatus=[{title:'All',value:'All'},{title:'Alive',value:'Alive'},{ti
 const optionsGenders=[{title:'All',value:'All'},{title:'Female',value:'female'},{title:'Male',value:'male'},{title:'Genderless',value:'genderless'},{title:'Unknown',value:'unknown'}]
 
 type Props={
-  filterCardsCallback:(type:string,value:string)=>void
+  filterCardsCallback:(value: string, key: keyof ICharacterFilter)=>void
   filter: ICharacterFilter
 }
 
