@@ -17,9 +17,10 @@ const pages = ['Characters','My watch list'];
 
 
 const NavigationBar = () => {
-   
+
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const history = useNavigate();
+  const navigate  = useNavigate();
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -27,10 +28,10 @@ const NavigationBar = () => {
   const handleCloseNavMenu = (page: string) => {
     switch (page){
       case 'Characters':
-        history('/Rick-Morty/characters');
+        history('/characters');
         break
       case 'My watch list':
-        history('/Rick-Morty/watchList');
+        history('/watchList');
         break
     }
     setAnchorElNav(null);
@@ -41,23 +42,24 @@ const NavigationBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/Rick-Morty/characters"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            Rick&Morty
-          </Typography>
+            <Button sx={{color: 'white'}} onClick={() => navigate('/characters')}>
+                <Typography
+                    variant="h6"
+                    noWrap
+                    sx={{
+                        mr: 2,
+                        display: { xs: 'none', md: 'flex' },
+                        fontFamily: 'monospace',
+                        fontWeight: 700,
+                        letterSpacing: '.3rem',
+                        color: 'inherit',
+                        textDecoration: 'none',
+                    }}
+                >
+                    Rick&Morty
+                </Typography>
+            </Button>
+
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -94,24 +96,26 @@ const NavigationBar = () => {
               ))}
             </Menu>
           </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/Rick-Morty/characters"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            Rick&Morty
-          </Typography>
+            <Button onClick={() => navigate('/Rick-Morty/characters')}>
+                <Typography
+                    variant="h5"
+                    noWrap
+
+                    sx={{
+                        mr: 2,
+                        display: { xs: 'flex', md: 'none' },
+                        flexGrow: 1,
+                        fontFamily: 'monospace',
+                        fontWeight: 700,
+                        letterSpacing: '.3rem',
+                        color: 'inherit',
+                        textDecoration: 'none',
+                    }}
+                >
+                    Rick&Morty
+                </Typography>
+            </Button>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
