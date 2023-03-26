@@ -11,7 +11,7 @@ const App = () => {
 
     useEffect(() => {
         if (pathname !== 'characters' && pathname !== 'watchList') {
-            navigate('characters')
+            navigate('/characters')
         }
     }, [])
 
