@@ -7,12 +7,14 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  IconButton,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import CharacterModel from "../models/CharacterModel";
 import moment from "moment";
+import CloseIcon from '@mui/icons-material/Close';
 type Props = {
   characterInfo: CharacterModel;
   open: boolean;
@@ -34,9 +36,9 @@ const CharacterDialogInfo: FC<Props> = ({ characterInfo, open, onClose }) => {
           {"Character Information"}
         </DialogTitle>
         <DialogActions>
-          <Button autoFocus onClick={() => onClose()}>
-            Close
-          </Button>
+          <IconButton autoFocus onClick={() => onClose()}>
+            <CloseIcon/>
+          </IconButton>
         </DialogActions>
       </Box>
 

@@ -7,7 +7,7 @@ import BaseAPI from "../services/api/BaseApi";
 import CharacterCard from "./CharacterCard";
 import CharacterDialogInfo from "./CharacterDialogInfo";
 import Filters from "./Filters";
-
+import CloseIcon from '@mui/icons-material/Close';
 const CharacterLayout: FC = ({}) => {
   const [characterInfo, setCharacterInfo] = useState<CharacterInfo | undefined>(
     undefined
@@ -86,9 +86,9 @@ const CharacterLayout: FC = ({}) => {
           justifyContent="center"
           alignItems="center"
           gap={4}
-          padding={5}
+          padding={1}
         >
-          {loading ? (Array.from(Array(20)).map((item,index)=>{return <Skeleton key={index} variant="rectangular" width={210} height={118} />})):(characterList?.map((item) => {
+          {loading ? (Array.from(Array(20)).map((item,index)=>{return <Skeleton sx={{width :{xs:'100%',sm:258}}}height={360}  key={index} variant="rectangular"/>})):(characterList?.map((item) => {
             return (
               <CharacterCard
                 characterModel={item}

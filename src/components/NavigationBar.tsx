@@ -42,13 +42,12 @@ const NavigationBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-            <Button sx={{color: 'white'}} onClick={() => navigate('/characters')}>
+            <Button sx={{color: 'white', display: {xs: 'none', md: 'block'}}} onClick={() => navigate('/characters')}>
                 <Typography
                     variant="h6"
                     noWrap
                     sx={{
                         mr: 2,
-                        display: { xs: 'none', md: 'flex' },
                         fontFamily: 'monospace',
                         fontWeight: 700,
                         letterSpacing: '.3rem',
@@ -96,11 +95,10 @@ const NavigationBar = () => {
               ))}
             </Menu>
           </Box>
-            <Button onClick={() => navigate('/Rick-Morty/characters')}>
+          <Button  onClick={() => navigate('/characters')}>
                 <Typography
                     variant="h5"
                     noWrap
-
                     sx={{
                         mr: 2,
                         display: { xs: 'flex', md: 'none' },
@@ -108,20 +106,19 @@ const NavigationBar = () => {
                         fontFamily: 'monospace',
                         fontWeight: 700,
                         letterSpacing: '.3rem',
-                        color: 'inherit',
+                        color: 'white',
                         textDecoration: 'none',
                     }}
                 >
                     Rick&Morty
                 </Typography>
             </Button>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={(event)=>handleCloseNavMenu(page)}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'white', display: {xs: 'none',md:'block'} }}
               >
                 {page}
               </Button>
