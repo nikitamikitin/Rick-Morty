@@ -10,10 +10,11 @@ const App = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (pathname !== 'characters' && pathname !== 'watchList') {
+        if (pathname !==  '/characters'  && pathname !== '/watchList') {
             navigate('/characters')
         }
     }, [])
+
 
     return (
         <Routes>
