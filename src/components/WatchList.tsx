@@ -24,12 +24,20 @@ const WatchList = () => {
   };
 
   useEffect(() => {
+    const lsEpisodes=getLSEpisodes()
     BaseAPI.episodes().then((r: EpisodeModel[]) => {
-      setListOfEpisodeNames(r.map((item) => `${item.episode}_${item.name}`));
+      const episodesNames=r.map((item) => `${item.episode}_${item.name}`)
+      const formattedEpisodes = episodesNames.reduce((res:any ,item: any)=>{
+        const match = lsEpisodes.find((item2: any )=>item2.chosenEpisode===item)
+        if(!match){
+          res.push(item)
+        }
+        return res 
+      },[])
+      setListOfEpisodeNames(formattedEpisodes);
     });
-    setLSEpisodes(getLSEpisodes());
+    setLSEpisodes(lsEpisodes);
   }, []);
-
   const addToLocalStorage = () => {
     const episodes: LSData[] = getLSEpisodes();
     const isChosenEpisodeInLS: LSData | undefined = episodes.find(
@@ -40,11 +48,11 @@ const WatchList = () => {
         "episodes",
         JSON.stringify([...episodes, { chosenEpisode, watched: false }])
       );
+      const formattedEpisodes = listOfEpisodeNames.filter((item: any)=>item!==chosenEpisode)
+      setListOfEpisodeNames(formattedEpisodes)
       setLSEpisodes(getLSEpisodes());
-    
-    } else {
-      
     }
+    setChosenEpisode("")
   };
   const handleRemoveEpisode=(item:LSData)=>{
     const episodes: LSData[] = getLSEpisodes();
@@ -52,6 +60,8 @@ const WatchList = () => {
       (episode) => episode.chosenEpisode !== item.chosenEpisode
     );
     localStorage.setItem("episodes", JSON.stringify([...episodesNew]));
+    
+    setListOfEpisodeNames([item.chosenEpisode,...listOfEpisodeNames].sort())
     setLSEpisodes(getLSEpisodes());
   }
 
@@ -68,24 +78,29 @@ const WatchList = () => {
     localStorage.setItem("episodes", JSON.stringify([...episodes]));
     setLSEpisodes(getLSEpisodes());
   };
-
   return (
-    <>
+    <Box sx={{width:'100%',padding:'15px',display:'flex',justifyContent:"center"}}>
+      <Box sx={{display:'flex',flexDirection:"column",justifyContent:'start',width:{xs:'100%',sm:400},gap:'16px'}}>
       <Box
         sx={{
+          width:'100%',
           display: "flex",
           justifyContent: "center",
-          marginTop: "15px",
           gap: "15px",
         }}
       >
+        <Box sx={{display:'flex',flexDirection:'row',width:"100%",justifyContent:'space-between'}}>
         <Autocomplete
           disablePortal
           id="combo-box-demo"
-          options={listOfEpisodeNames}
-          sx={{ width: 300 }}
+          options={[...listOfEpisodeNames,""]}
+          getOptionLabel={(option) => option}
+          value={chosenEpisode}
+          filterSelectedOptions
+          sx={{ width: "50%" }}  
           onChange={(event: any, newValue: string | null) => {
             handleChoseEpisode(event, newValue);
+
           }}
           renderInput={(params) => <TextField {...params} label="Episode" />}
         />
@@ -97,11 +112,12 @@ const WatchList = () => {
           Add Episode
         </Button>
       </Box>
+      </Box>
       <Box
         sx={{
+          width:'100%',
           display: "flex",
           justifyContent: "center",
-          marginTop: "15px",
           gap: "15px",
         }}
       >
@@ -111,7 +127,8 @@ const WatchList = () => {
           removeEpisodeFromList={handleRemoveEpisode}
         ></EpisodeList>
       </Box>
-    </>
+      </Box>
+    </Box>
   );
 };
 export default WatchList;

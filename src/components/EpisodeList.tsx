@@ -1,4 +1,5 @@
 import {
+  Box,
   Checkbox,
   IconButton,
   List,
@@ -20,7 +21,9 @@ type Props = {
 const EpisodeList: FC<Props> = ({data,changeWatchedFlag,removeEpisodeFromList}) => {
   
   return (
-    <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+    <Box sx={{width: "100%",display: "flex",
+    justifyContent: "center"}}>
+    <List sx={{width:'100%', bgcolor: "background.paper" }}>
       {data.map((value,index) => {
         const labelId = `checkbox-list-label-${index}`;
 
@@ -28,8 +31,8 @@ const EpisodeList: FC<Props> = ({data,changeWatchedFlag,removeEpisodeFromList}) 
           <ListItem
             key={index}
             secondaryAction={
-              <IconButton edge="end" aria-label="deleteIcon">
-                <DeleteIcon  onClick={()=>removeEpisodeFromList(value)}/>
+              <IconButton edge="end" aria-label="deleteIcon" onClick={()=>removeEpisodeFromList(value)}>
+                <DeleteIcon />
               </IconButton>
             }
             disablePadding
@@ -50,6 +53,7 @@ const EpisodeList: FC<Props> = ({data,changeWatchedFlag,removeEpisodeFromList}) 
         );
       })}
     </List>
+    </Box>
   );
 };
 export default EpisodeList;
