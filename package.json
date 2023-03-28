@@ -5,7 +5,7 @@
   "homepage": "https://nikitamikitin.github.io/Rick-Morty",
   "type": "module",
   "scripts": {
-    "pr:":"npx prettier --write .",
+    "pr:": "npx prettier --write .",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
