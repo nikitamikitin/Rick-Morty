@@ -9,20 +9,12 @@ const instance = axios.create({
 const BaseAPI = {
 
   async characters(page:number,filter:ICharacterFilter){
-    
     return await instance.get("character",{
       params:{
         page,
         ...filter
       }
-    }).then((r) => r.data).catch((e)=>{
-      if (e.response && e.response.status==404){
-        return []
-      }
-      else{
-        return 'error'
-      }
-    })
+    }).then((r) => r.data).catch(()=> ({results: [], info: {count: 0, pages: 0}}))
   },
 
   async episodes(){
