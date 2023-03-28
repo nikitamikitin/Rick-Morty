@@ -1,7 +1,7 @@
 interface ICharacterFilter {
-    species: string
-    status:string
-    gender:string
+  species: string;
+  status: string;
+  gender: string;
 }
 
-export default ICharacterFilter
+export default ICharacterFilter;

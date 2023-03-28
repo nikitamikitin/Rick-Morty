@@ -1,12 +1,19 @@
-import { Box, Grid, Pagination, Skeleton, Stack, Typography } from "@mui/material";
-import { FC, useEffect, useState } from "react";
-import CharacterInfo from "../models/CharacterInfo";
-import CharacterModel from "../models/CharacterModel";
-import ICharacterFilter from "../models/ICharacterFilter";
-import BaseAPI from "../services/api/BaseApi";
-import CharacterCard from "./CharacterCard";
-import CharacterDialogInfo from "./CharacterDialogInfo";
-import Filters from "./Filters";
+import {
+  Box,
+  Grid,
+  Pagination,
+  Skeleton,
+  Stack,
+  Typography,
+} from '@mui/material';
+import { FC, useEffect, useState } from 'react';
+import CharacterInfo from '../models/CharacterInfo';
+import CharacterModel from '../models/CharacterModel';
+import ICharacterFilter from '../models/ICharacterFilter';
+import BaseAPI from '../services/api/BaseApi';
+import CharacterCard from './CharacterCard';
+import CharacterDialogInfo from './CharacterDialogInfo';
+import Filters from './Filters';
 
 const CharacterLayout: FC = ({}) => {
   const [characterInfo, setCharacterInfo] = useState<CharacterInfo | undefined>(
@@ -26,7 +33,7 @@ const CharacterLayout: FC = ({}) => {
   const [filter, setFilter] = useState<ICharacterFilter>(getDefaultFilter());
 
   const filterCards = (value: string, key: keyof ICharacterFilter) => {
-    const formattedValue = value === 'All' ? '' : value
+    const formattedValue = value === 'All' ? '' : value;
     if (filter[key] !== formattedValue) {
       setFilter({ ...filter, [key]: formattedValue });
       setPage(1);
@@ -47,8 +54,8 @@ const CharacterLayout: FC = ({}) => {
   };
 
   useEffect(() => {
-    setLoading(true)
-    BaseAPI.characters(page, filter).then((r) => {
+    setLoading(true);
+    BaseAPI.characters(page, filter).then(r => {
       if (r.results == characterList && r.info == characterInfo) {
         return;
       } else {
@@ -58,17 +65,14 @@ const CharacterLayout: FC = ({}) => {
       if (r.length == 0) {
         setFilterError(true);
       }
-      if (r!="error"){
-        setLoading(false)
+      if (r != 'error') {
+        setLoading(false);
       }
-    })
-
-    
-  }, [page, filter]);  
+    });
+  }, [page, filter]);
 
   return (
     <>
-        
       <Filters filter={filter} filterCardsCallback={filterCards}></Filters>
 
       <div>
@@ -88,16 +92,33 @@ const CharacterLayout: FC = ({}) => {
           gap={4}
           padding={2}
         >
-          {loading ? (Array.from(Array(20)).map((item,index)=>{return <Skeleton sx={{width :{xs:'100%',sm:258}}}height={360}  key={index} variant="rectangular"/>})):(characterList?.map((item) => {
-            return (
-              <CharacterCard
-                characterModel={item}
-                dialogOpen={handleOpenDialogOpen}
-                key={item.id}
-              ></CharacterCard>
-            );
-          })) }
-          {filterError && <Box><Typography>No data with this filter values.Please Try Again</Typography></Box>}
+          {loading
+            ? Array.from(Array(20)).map((item, index) => {
+                return (
+                  <Skeleton
+                    sx={{ width: { xs: '100%', sm: 258 } }}
+                    height={360}
+                    key={index}
+                    variant="rectangular"
+                  />
+                );
+              })
+            : characterList?.map(item => {
+                return (
+                  <CharacterCard
+                    characterModel={item}
+                    dialogOpen={handleOpenDialogOpen}
+                    key={item.id}
+                  ></CharacterCard>
+                );
+              })}
+          {filterError && (
+            <Box>
+              <Typography>
+                No data with this filter values.Please Try Again
+              </Typography>
+            </Box>
+          )}
         </Grid>
         {characterInfo && (
           <Grid
@@ -123,5 +144,5 @@ const CharacterLayout: FC = ({}) => {
 export default CharacterLayout;
 
 function getDefaultFilter(): ICharacterFilter {
-  return { species: "", status: "", gender: "" };
+  return { species: '', status: '', gender: '' };
 }

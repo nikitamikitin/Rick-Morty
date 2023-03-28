@@ -10,10 +10,10 @@ import {
   IconButton,
   useMediaQuery,
   useTheme,
-} from "@mui/material";
-import { FC, useEffect, useState } from "react";
-import CharacterModel from "../models/CharacterModel";
-import moment from "moment";
+} from '@mui/material';
+import { FC, useEffect, useState } from 'react';
+import CharacterModel from '../models/CharacterModel';
+import moment from 'moment';
 import CloseIcon from '@mui/icons-material/Close';
 type Props = {
   characterInfo: CharacterModel;
@@ -23,7 +23,7 @@ type Props = {
 
 const CharacterDialogInfo: FC<Props> = ({ characterInfo, open, onClose }) => {
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <Dialog
       fullScreen={fullScreen}
@@ -31,23 +31,30 @@ const CharacterDialogInfo: FC<Props> = ({ characterInfo, open, onClose }) => {
       onClose={onClose}
       aria-labelledby="responsive-dialog-title"
     >
-      <Box sx={{display :'flex' ,flexDirection:'row' ,width:'100%',justifyContent:'space-between'}}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          width: '100%',
+          justifyContent: 'space-between',
+        }}
+      >
         <DialogTitle id="responsive-dialog-title" textAlign="center">
-          {"Character Information"}
+          {'Character Information'}
         </DialogTitle>
         <DialogActions>
           <IconButton autoFocus onClick={() => onClose()}>
-            <CloseIcon/>
+            <CloseIcon />
           </IconButton>
         </DialogActions>
       </Box>
 
       <DialogContent
         sx={{
-          display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
-          alignItems: { xs: "center" },
-          gap: "10px",
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          alignItems: { xs: 'center' },
+          gap: '10px',
         }}
       >
         <Box
@@ -64,11 +71,11 @@ const CharacterDialogInfo: FC<Props> = ({ characterInfo, open, onClose }) => {
         <Box
           sx={{
             height: 300,
-            display: "flex",
-            flexDirection: "column",
-            gap: { xs: "5px" },
-            alignItems: { xs: "center", sm: "start" },
-            width: { xs: "100%" },
+            display: 'flex',
+            flexDirection: 'column',
+            gap: { xs: '5px' },
+            alignItems: { xs: 'center', sm: 'start' },
+            width: { xs: '100%' },
           }}
         >
           <DialogContentText>Name: {characterInfo?.name}</DialogContentText>
@@ -78,8 +85,8 @@ const CharacterDialogInfo: FC<Props> = ({ characterInfo, open, onClose }) => {
           </DialogContentText>
           <DialogContentText>Status: {characterInfo?.status}</DialogContentText>
           <DialogContentText>
-            Created:{" "}
-            {moment(characterInfo?.created).utc().format("YYYY-MM-DD hh:mm:ss")}
+            Created:{' '}
+            {moment(characterInfo?.created).utc().format('YYYY-MM-DD hh:mm:ss')}
           </DialogContentText>
         </Box>
       </DialogContent>

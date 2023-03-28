@@ -5,12 +5,12 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
-} from "@mui/material";
-import { FC, useState } from "react";
-import ICharacterFilter from "../models/ICharacterFilter";
+} from '@mui/material';
+import { FC, useState } from 'react';
+import ICharacterFilter from '../models/ICharacterFilter';
 
 enum ISpecies {
-  'All'="All",
+  'All' = 'All',
   'human' = 'Human',
   'alien' = 'Alien',
   'humanoid' = 'Humanoid',
@@ -23,33 +23,49 @@ enum ISpecies {
   'unknown' = 'unknown',
 }
 
+const optionsStatus = [
+  { title: 'All', value: 'All' },
+  { title: 'Alive', value: 'Alive' },
+  { title: 'Dead', value: 'Dead' },
+  { title: 'Unknown', value: 'unknown' },
+];
 
+const optionsGenders = [
+  { title: 'All', value: 'All' },
+  { title: 'Female', value: 'female' },
+  { title: 'Male', value: 'male' },
+  { title: 'Genderless', value: 'genderless' },
+  { title: 'Unknown', value: 'unknown' },
+];
 
-const optionsStatus=[{title:'All',value:'All'},{title:'Alive',value:'Alive'},{title:'Dead',value:'Dead'},{title:'Unknown',value:'unknown'}]
+type Props = {
+  filterCardsCallback: (value: string, key: keyof ICharacterFilter) => void;
+  filter: ICharacterFilter;
+};
 
-const optionsGenders=[{title:'All',value:'All'},{title:'Female',value:'female'},{title:'Male',value:'male'},{title:'Genderless',value:'genderless'},{title:'Unknown',value:'unknown'}]
-
-type Props={
-  filterCardsCallback:(value: string, key: keyof ICharacterFilter)=>void
-  filter: ICharacterFilter
-}
-
-
-const Filters: FC<Props> = ({filterCardsCallback,filter}) => {
+const Filters: FC<Props> = ({ filterCardsCallback, filter }) => {
   const handleChangeSpecies = (event: SelectChangeEvent) => {
-    filterCardsCallback(event.target.value,"species")
+    filterCardsCallback(event.target.value, 'species');
   };
 
   const handleChangeStatus = (event: SelectChangeEvent) => {
-    filterCardsCallback(event.target.value,"status")
+    filterCardsCallback(event.target.value, 'status');
   };
 
-  const handleChangeGender = (event: SelectChangeEvent) => {  
-    filterCardsCallback(event.target.value,"gender")
+  const handleChangeGender = (event: SelectChangeEvent) => {
+    filterCardsCallback(event.target.value, 'gender');
   };
 
   return (
-    <Box sx={{ minWidth: 120 ,display: 'flex',flexDirection: { xs: 'column',sm:'row'},gap:'16px ',padding:'16px' }}>
+    <Box
+      sx={{
+        minWidth: 120,
+        display: 'flex',
+        flexDirection: { xs: 'column', sm: 'row' },
+        gap: '16px ',
+        padding: '16px',
+      }}
+    >
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Species</InputLabel>
         <Select
@@ -59,9 +75,13 @@ const Filters: FC<Props> = ({filterCardsCallback,filter}) => {
           value={filter.species}
           onChange={handleChangeSpecies}
         >
-        {Object.values(ISpecies).map((item: any )=>{
-            return <MenuItem  key={item} value={item}>{item}</MenuItem>
-        })}
+          {Object.values(ISpecies).map((item: any) => {
+            return (
+              <MenuItem key={item} value={item}>
+                {item}
+              </MenuItem>
+            );
+          })}
         </Select>
       </FormControl>
       <FormControl fullWidth>
@@ -73,9 +93,13 @@ const Filters: FC<Props> = ({filterCardsCallback,filter}) => {
           value={filter.status}
           onChange={handleChangeStatus}
         >
-        {optionsStatus.map((item)=>{
-            return <MenuItem  key={item.title} value={item.value}>{item.title}</MenuItem>
-        })}
+          {optionsStatus.map(item => {
+            return (
+              <MenuItem key={item.title} value={item.value}>
+                {item.title}
+              </MenuItem>
+            );
+          })}
         </Select>
       </FormControl>
       <FormControl fullWidth>
@@ -87,12 +111,15 @@ const Filters: FC<Props> = ({filterCardsCallback,filter}) => {
           value={filter.gender}
           onChange={handleChangeGender}
         >
-         {optionsGenders.map((item)=>{
-            return <MenuItem  key={item.title} value={item.value}>{item.title}</MenuItem>
-        })}
+          {optionsGenders.map(item => {
+            return (
+              <MenuItem key={item.title} value={item.value}>
+                {item.title}
+              </MenuItem>
+            );
+          })}
         </Select>
       </FormControl>
-
     </Box>
   );
 };
