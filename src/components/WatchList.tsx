@@ -89,7 +89,7 @@ const WatchList = () => {
           gap: "15px",
         }}
       >
-        <Box sx={{display:'flex',flexDirection:'row',width:"100%",justifyContent:'space-between'}}>
+        <Box sx={{display:'flex',flexDirection:'row',width:"100%",justifyContent:'space-between',gap:"15px"}}>
         <Autocomplete
           disablePortal
           id="combo-box-demo"
@@ -97,7 +97,7 @@ const WatchList = () => {
           getOptionLabel={(option) => option}
           value={chosenEpisode}
           filterSelectedOptions
-          sx={{ width: "50%" }}  
+          sx={{ width: "100%" }}  
           onChange={(event: any, newValue: string | null) => {
             handleChoseEpisode(event, newValue);
 
@@ -105,6 +105,7 @@ const WatchList = () => {
           renderInput={(params) => <TextField {...params} label="Episode" />}
         />
         <Button
+          sx={{width:"60%"}}
           disabled={!chosenEpisode}
           variant="contained"
           onClick={() => addToLocalStorage()}
