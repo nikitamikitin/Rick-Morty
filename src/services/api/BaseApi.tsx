@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { BaseURL } from '../../constants/BaseURL';
-import ICharacterFilter from '../../models/ICharacterFilter';
+import { BaseURL } from 'constants/BaseURL';
+import ICharacterFilter from 'models/ICharacterFilter';
 
 const instance = axios.create({
   baseURL: BaseURL,
@@ -16,12 +16,8 @@ const BaseAPI = {
         },
       })
       .then(r => r.data)
-      .catch(e => {
-        if (e.response && e.response.status == 404) {
-          return [];
-        } else {
-          return 'error';
-        }
+      .catch(() => {
+        return { info: {}, results: [] };
       });
   },
 
