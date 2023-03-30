@@ -18,7 +18,7 @@ const CharacterCard: FC<Props> = ({ characterModel, dialogOpen }) => {
   const openDialog = (characterModel: CharacterModel) => {
     dialogOpen(characterModel);
   };
-
+  console.log(123)
   return (
     <Box sx={{ width: { xs: '100%', sm: 258 } }}>
       {characterModel && (
