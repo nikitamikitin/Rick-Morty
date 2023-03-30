@@ -6,7 +6,7 @@ import BaseAPI from 'services/api/BaseApi';
 
 const useGetCharacters = (page: number, filter: ICharacterFilter) => {
   const [characterInfo, setCharacterInfo] = useState<CharacterInfo>();
-  const [characterList, setCharacterList] = useState<CharacterModel[]>();
+  const [characterList, setCharacterList] = useState<CharacterModel[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const useGetCharacters = (page: number, filter: ICharacterFilter) => {
       .finally(() => setLoading(false));
   }, [page, filter]);
 
-  return {characterInfo, characterList, loading};
+  return { characterInfo, characterList, loading };
 };
 
 export default useGetCharacters;
