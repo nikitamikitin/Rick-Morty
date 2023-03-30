@@ -18,7 +18,10 @@
     "baseUrl": "./src",
     "paths": {
       "@components/*": ["./components/*"],
-      "@constants/*": ["./constants/*"]
+      "@constants/*": ["./constants/*"],
+      "@services/*": ["./services/*"],
+      "@hooks/*": ["./hooks/*"]
+      
     }
   },
   "include": ["src"],
