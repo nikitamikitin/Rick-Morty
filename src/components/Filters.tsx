@@ -6,22 +6,9 @@ import {
   Select,
   SelectChangeEvent,
 } from '@mui/material';
-import { FC, useState } from 'react';
-import ICharacterFilter from '../models/ICharacterFilter';
-
-enum ISpecies {
-  'All' = 'All',
-  'human' = 'Human',
-  'alien' = 'Alien',
-  'humanoid' = 'Humanoid',
-  'poopybutthole' = 'Poopybutthole',
-  'mythologicalCreature' = 'Mythological creature',
-  'animal' = 'Animal',
-  'robot' = 'Robot',
-  'cronenberg' = 'Cronenberg',
-  'disease' = 'Disease',
-  'unknown' = 'unknown',
-}
+import { FC } from 'react';
+import ICharacterFilter from 'models/ICharacterFilter';
+import ISpecies from 'models/ISpecies';
 
 const optionsStatus = [
   { title: 'All', value: 'All' },

@@ -1,12 +1,12 @@
-import CharacterInfo from 'models/CharacterInfo';
-import CharacterModel from 'models/CharacterModel';
+import ICharacterInfo from 'models/ICharacterInfo';
+import ICharacterModel from 'models/ICharacterModel';
 import ICharacterFilter from 'models/ICharacterFilter';
 import { useEffect, useState } from 'react';
 import BaseAPI from 'services/api/BaseApi';
 
 const useGetCharacters = (page: number, filter: ICharacterFilter) => {
-  const [characterInfo, setCharacterInfo] = useState<CharacterInfo>();
-  const [characterList, setCharacterList] = useState<CharacterModel[]>([]);
+  const [characterInfo, setCharacterInfo] = useState<ICharacterInfo>();
+  const [characterList, setCharacterList] = useState<ICharacterModel[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

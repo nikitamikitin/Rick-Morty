@@ -1,8 +1,8 @@
 import { Autocomplete, Box, Button, MenuItem, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
-import EpisodeModel from '../models/EpisodeModel';
-import BaseAPI from '../services/api/BaseApi';
-import EpisodeList from './EpisodeList';
+import IEpisodeModel from 'models/IEpisodeModel';
+import BaseAPI from 'services/api/BaseApi';
+import EpisodeList from 'components/EpisodeList';
 
 export interface LSData {
   chosenEpisode: string;
@@ -25,7 +25,7 @@ const WatchList = () => {
 
   useEffect(() => {
     const lsEpisodes = getLSEpisodes();
-    BaseAPI.episodes().then((r: EpisodeModel[]) => {
+    BaseAPI.episodes().then((r: IEpisodeModel[]) => {
       const episodesNames = r.map(item => `${item.episode}_${item.name}`);
       const formattedEpisodes = episodesNames.reduce((res: any, item: any) => {
         const match = lsEpisodes.find(

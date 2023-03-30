@@ -1,6 +1,6 @@
 import { Box, Grid, Pagination, Stack, Typography } from '@mui/material';
-import { FC, useState } from 'react';
-import CharacterModel from 'models/CharacterModel';
+import { useState } from 'react';
+import ICharacterModel from 'models/ICharacterModel';
 import ICharacterFilter from 'models/ICharacterFilter';
 import CharacterCard from 'components/CharacterCard';
 import CharacterDialogInfo from 'components/CharacterDialogInfo';
@@ -10,7 +10,7 @@ import SceletonRectangular from 'components/SceletonRectangular';
 import useGetCharacters from 'services/hooks/useGetCharacters';
 
 const CharacterLayout = () => {
-  const [chosenCharacter, setChosenCharacter] = useState<CharacterModel>();
+  const [chosenCharacter, setChosenCharacter] = useState<ICharacterModel>();
   const [page, setPage] = useState(1);
   const [filter, setFilter] = useState<ICharacterFilter>(getDefaultFilter());
   const { characterInfo, characterList, loading } = useGetCharacters(
@@ -30,7 +30,7 @@ const CharacterLayout = () => {
     setPage(value);
   };
 
-  const handleOpenDialogOpen = (chosenCharacter: CharacterModel) => {
+  const handleOpenDialogOpen = (chosenCharacter: ICharacterModel) => {
     setChosenCharacter(chosenCharacter);
   };
 
@@ -40,7 +40,7 @@ const CharacterLayout = () => {
 
   const getTableData = (
     loading: boolean,
-    characterList: CharacterModel[]
+    characterList: ICharacterModel[]
   ): JSX.Element => {
     if (loading) {
       return <SceletonRectangular count={20} />;

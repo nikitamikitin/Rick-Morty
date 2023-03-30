@@ -20,7 +20,8 @@
       "@components/*": ["./components/*"],
       "@constants/*": ["./constants/*"],
       "@services/*": ["./services/*"],
-      "@hooks/*": ["./hooks/*"]
+      "@hooks/*": ["./services/hooks/*"],
+      "@models/*": ["./constants/*"],
     }
   },
   "include": ["src"],

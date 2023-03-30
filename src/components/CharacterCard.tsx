@@ -3,19 +3,18 @@ import {
   Card,
   CardActionArea,
   CardContent,
-  CardMedia,
   Typography,
 } from '@mui/material';
-import { FC, useState } from 'react';
-import CharacterModel from '../models/CharacterModel';
+import { FC } from 'react';
+import ICharacterModel from 'models/ICharacterModel';
 
 type Props = {
-  characterModel: CharacterModel;
-  dialogOpen: (characterModel: CharacterModel) => void;
+  characterModel: ICharacterModel;
+  dialogOpen: (characterModel: ICharacterModel) => void;
 };
 
 const CharacterCard: FC<Props> = ({ characterModel, dialogOpen }) => {
-  const openDialog = (characterModel: CharacterModel) => {
+  const openDialog = (characterModel: ICharacterModel) => {
     dialogOpen(characterModel);
   };
   return (

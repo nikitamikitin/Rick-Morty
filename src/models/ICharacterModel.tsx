@@ -1,4 +1,4 @@
-type CharacterModel = {
+interface ICharacterModel{
   id: number;
   gender: string;
   image: string;
@@ -13,4 +13,4 @@ type CharacterModel = {
   origin: [];
 };
 
-export default CharacterModel;
+export default ICharacterModel;

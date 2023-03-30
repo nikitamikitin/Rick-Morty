@@ -12,11 +12,11 @@ import {
   useTheme,
 } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
-import CharacterModel from '../models/CharacterModel';
+import ICharacterModel from 'models/ICharacterModel';
 import moment from 'moment';
 import CloseIcon from '@mui/icons-material/Close';
 type Props = {
-  characterInfo: CharacterModel;
+  characterInfo: ICharacterModel;
   open: boolean;
   onClose: () => void;
 };
