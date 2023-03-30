@@ -1,4 +1,4 @@
-interface EpisodeModel {
+interface IEpisodeModel {
   air_date: string;
   characters: [];
   created: string;
@@ -8,4 +8,4 @@ interface EpisodeModel {
   url: string;
 }
 
-export default EpisodeModel;
+export default IEpisodeModel;

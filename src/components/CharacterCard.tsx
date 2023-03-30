@@ -14,14 +14,16 @@ type Props = {
 };
 
 const CharacterCard: FC<Props> = ({ characterModel, dialogOpen }) => {
-  const openDialog = (characterModel: ICharacterModel) => {
-    dialogOpen(characterModel);
-  };
+  // const openDialog = (characterModel: ICharacterModel) => {
+  //   dialogOpen(characterModel);
+  // };
+
+
   return (
     <Box sx={{ width: { xs: '100%', sm: 258 } }}>
       {characterModel && (
         <Card sx={{ width: { xs: '100%', sm: 258 } }}>
-          <CardActionArea onClick={() => openDialog(characterModel)}>
+          <CardActionArea onClick={() => dialogOpen(characterModel)}>
             <Box
               component="img"
               sx={{ height: { sm: '100%' }, width: '100%' }}

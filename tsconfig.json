@@ -17,11 +17,11 @@
     "jsx": "react-jsx",
     "baseUrl": "./src",
     "paths": {
-      "@components/*": ["./components/*"],
-      "@constants/*": ["./constants/*"],
-      "@services/*": ["./services/*"],
-      "@hooks/*": ["./services/hooks/*"],
-      "@models/*": ["./constants/*"]
+      "components/*": ["./components/*"],
+      "constants/*": ["./constants/*"],
+      "services/*": ["./services/*"],
+      "hooks/*": ["./services/hooks/*"],
+      "models/*": ["./models/*"]
     }
   },
   "include": ["src"],

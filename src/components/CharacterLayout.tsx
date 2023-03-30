@@ -6,7 +6,7 @@ import CharacterCard from 'components/CharacterCard';
 import CharacterDialogInfo from 'components/CharacterDialogInfo';
 import Filters from 'components/Filters';
 import getDefaultFilter from 'constants/defaultFilter';
-import SceletonRectangular from 'components/SceletonRectangular';
+import SkeletonRectangular from 'components/SceletonRectangular';
 import useGetCharacters from 'services/hooks/useGetCharacters';
 
 const CharacterLayout = () => {
@@ -43,7 +43,7 @@ const CharacterLayout = () => {
     characterList: ICharacterModel[]
   ): JSX.Element => {
     if (loading) {
-      return <SceletonRectangular count={20} />;
+      return <SkeletonRectangular count={20} />;
     }
     if (characterList?.length == 0) {
       return (

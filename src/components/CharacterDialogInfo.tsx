@@ -1,7 +1,5 @@
 import {
-  Avatar,
   Box,
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -11,7 +9,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import ICharacterModel from 'models/ICharacterModel';
 import moment from 'moment';
 import CloseIcon from '@mui/icons-material/Close';

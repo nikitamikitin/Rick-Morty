@@ -5,7 +5,7 @@ type Props = {
   count: number;
 };
 
-const SceletonRectangular: FC<Props> = ({ count }) => {
+const SkeletonRectangular: FC<Props> = ({ count }) => {
   return (
     <>
       {Array.from(Array(count)).map((item, index) => (
@@ -19,4 +19,4 @@ const SceletonRectangular: FC<Props> = ({ count }) => {
     </>
   );
 };
-export default SceletonRectangular;
+export default SkeletonRectangular;

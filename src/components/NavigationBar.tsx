@@ -4,15 +4,16 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Drawer, useMediaQuery } from '@mui/material';
-const pages = ['Characters', 'My watch list'];
 import CloseIcon from '@mui/icons-material/Close';
+import Urls from 'constants/Urls';
+
+const pages = ['Characters', 'My watch list'];
 const NavigationBar = () => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const history = useNavigate();
@@ -27,13 +28,13 @@ const NavigationBar = () => {
   };
 
   const handleCloseNavMenu = (page: string) => {
+    console.log(page)
     switch (page) {
       case 'Characters':
-        history('/characters');
-
+        history(Urls.characters);
         break;
       case 'My watch list':
-        history('/watchList');
+        history(Urls.watchList);
         break;
     }
     setOpenDrawer(false);
@@ -91,7 +92,7 @@ const NavigationBar = () => {
             }}
           >
             {pages.map((item, index) => (
-              <Button key={index} onClick={() => handleCloseNavMenu(item)}>
+              <Button key={index} onClick={()=>handleCloseNavMenu(item)}>
                 {item}
               </Button>
             ))}
@@ -143,7 +144,7 @@ const NavigationBar = () => {
               <MenuIcon />
             </IconButton>
           </Box>
-          <Button onClick={() => navigate('/characters')}>
+          <Button onClick={() => handleCloseNavMenu(Urls.characters)}>
             <Typography
               variant="h5"
               noWrap

@@ -2,7 +2,7 @@ import Urls from 'constants/Urls';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const navigateHook = () => {
+const useNavigateRouter = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -10,7 +10,7 @@ const navigateHook = () => {
     if (pathname !== Urls.characters && pathname !== Urls.watchList) {
       navigate(Urls.characters);
     }
-  }, []);
+  }, [pathname]);
 };
 
-export default navigateHook;
+export default useNavigateRouter;
