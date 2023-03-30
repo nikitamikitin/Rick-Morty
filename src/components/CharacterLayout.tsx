@@ -2,28 +2,24 @@ import {
   Box,
   Grid,
   Pagination,
-  Skeleton,
   Stack,
   Typography,
 } from '@mui/material';
-import { FC, useEffect, useState } from 'react';
-import CharacterInfo from 'models/CharacterInfo';
+import { FC,useState } from 'react';
 import CharacterModel from 'models/CharacterModel';
 import ICharacterFilter from 'models/ICharacterFilter';
-import BaseAPI from 'services/api/BaseApi';
 import CharacterCard from 'components/CharacterCard';
 import CharacterDialogInfo from 'components/CharacterDialogInfo';
 import Filters from 'components/Filters';
 import getDefaultFilter from 'constants/defaultFilter';
 import SceletonRectangular from 'components/SceletonRectangular';
-import getCharactersHook from 'services/hooks/getCharactersHook';
+import useGetCharacters from 'services/hooks/useGetCharacters';
 
 const CharacterLayout: FC = ({}) => {
-  const [chosenCharacter, setchosenCharacter] = useState<CharacterModel>();
+  const [chosenCharacter, setChosenCharacter] = useState<CharacterModel>();
   const [page, setPage] = useState(1);
-  //filter fields
   const [filter, setFilter] = useState<ICharacterFilter>(getDefaultFilter());
-  const [characterInfo, characterList, loading] = getCharactersHook(
+  const{characterInfo, characterList, loading} = useGetCharacters(
     page,
     filter
   );
@@ -41,11 +37,11 @@ const CharacterLayout: FC = ({}) => {
   };
 
   const handleOpenDialogOpen = (chosenCharacter: CharacterModel) => {
-    setchosenCharacter(chosenCharacter);
+    setChosenCharacter(chosenCharacter);
   };
 
   const handeCloseDialogOpen = () => {
-    setchosenCharacter(undefined);
+    setChosenCharacter(undefined);
   };
 
   return (
