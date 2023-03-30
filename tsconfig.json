@@ -21,7 +21,7 @@
       "@constants/*": ["./constants/*"],
       "@services/*": ["./services/*"],
       "@hooks/*": ["./services/hooks/*"],
-      "@models/*": ["./constants/*"],
+      "@models/*": ["./constants/*"]
     }
   },
   "include": ["src"],

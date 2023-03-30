@@ -1,4 +1,4 @@
-interface ICharacterModel{
+interface ICharacterModel {
   id: number;
   gender: string;
   image: string;
@@ -11,6 +11,6 @@ interface ICharacterModel{
   episode: [];
   location: [];
   origin: [];
-};
+}
 
 export default ICharacterModel;
