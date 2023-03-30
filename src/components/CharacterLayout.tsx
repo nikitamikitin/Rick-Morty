@@ -9,7 +9,7 @@ import getDefaultFilter from 'constants/defaultFilter';
 import SceletonRectangular from 'components/SceletonRectangular';
 import useGetCharacters from 'services/hooks/useGetCharacters';
 
-const CharacterLayout=() => {
+const CharacterLayout = () => {
   const [chosenCharacter, setChosenCharacter] = useState<CharacterModel>();
   const [page, setPage] = useState(1);
   const [filter, setFilter] = useState<ICharacterFilter>(getDefaultFilter());
@@ -43,7 +43,7 @@ const CharacterLayout=() => {
     characterList: CharacterModel[]
   ): JSX.Element => {
     if (loading) {
-      return <SceletonRectangular count={20}/>;
+      return <SceletonRectangular count={20} />;
     }
     if (characterList?.length == 0) {
       return (
@@ -55,17 +55,17 @@ const CharacterLayout=() => {
         </Box>
       );
     }
-      return (
-        <>
-         {characterList?.map(item => {
-              return (
-                <CharacterCard
-                  characterModel={item}
-                  dialogOpen={handleOpenDialogOpen}
-                  key={item.id}
-                ></CharacterCard>
-              );
-            })}
+    return (
+      <>
+        {characterList?.map(item => {
+          return (
+            <CharacterCard
+              characterModel={item}
+              dialogOpen={handleOpenDialogOpen}
+              key={item.id}
+            ></CharacterCard>
+          );
+        })}
         <Grid
           container
           justifyContent="center"
@@ -80,9 +80,8 @@ const CharacterLayout=() => {
             />
           </Stack>
         </Grid>
-        </>
-      );
-    
+      </>
+    );
   };
 
   return (
@@ -102,8 +101,9 @@ const CharacterLayout=() => {
           alignItems="center"
           gap={4}
           padding={2}
-        >{getTableData(loading,characterList)}
-        </Grid>    
+        >
+          {getTableData(loading, characterList)}
+        </Grid>
       </Grid>
     </>
   );
