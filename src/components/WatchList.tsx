@@ -1,15 +1,13 @@
-import { Autocomplete, Box, Button, MenuItem, TextField } from '@mui/material';
+import { Autocomplete, Box, Button, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
 import IEpisodeModel from 'models/IEpisodeModel';
 import BaseAPI from 'services/api/BaseApi';
 import EpisodeList from 'components/EpisodeList';
+import IlSData from 'models/ILSData';
 
-export interface LSData {
-  chosenEpisode: string;
-  watched: boolean;
-}
 
-const getLSEpisodes = (): LSData[] => {
+
+const getLSEpisodes = (): IlSData[] => {
   const localStorageData = localStorage.getItem('episodes');
   return localStorageData ? JSON.parse(localStorageData) : [];
 };
@@ -17,7 +15,7 @@ const getLSEpisodes = (): LSData[] => {
 const WatchList = () => {
   const [listOfEpisodeNames, setListOfEpisodeNames] = useState<string[]>([]);
   const [chosenEpisode, setChosenEpisode] = useState<string | null>(null);
-  const [lsEpisodes, setLSEpisodes] = useState<LSData[]>([]);
+  const [lsEpisodes, setLSEpisodes] = useState<IlSData[]>([]);
 
   const handleChoseEpisode = (event: any, newValue: string | null) => {
     setChosenEpisode(newValue);
@@ -41,8 +39,8 @@ const WatchList = () => {
     setLSEpisodes(lsEpisodes);
   }, []);
   const addToLocalStorage = () => {
-    const episodes: LSData[] = getLSEpisodes();
-    const isChosenEpisodeInLS: LSData | undefined = episodes.find(
+    const episodes: IlSData[] = getLSEpisodes();
+    const isChosenEpisodeInLS: IlSData | undefined = episodes.find(
       item => item.chosenEpisode === chosenEpisode
     );
     if (!isChosenEpisodeInLS) {
@@ -58,8 +56,8 @@ const WatchList = () => {
     }
     setChosenEpisode('');
   };
-  const handleRemoveEpisode = (item: LSData) => {
-    const episodes: LSData[] = getLSEpisodes();
+  const handleRemoveEpisode = (item: IlSData) => {
+    const episodes: IlSData[] = getLSEpisodes();
     const episodesNew = episodes.filter(
       episode => episode.chosenEpisode !== item.chosenEpisode
     );
@@ -69,8 +67,8 @@ const WatchList = () => {
     setLSEpisodes(getLSEpisodes());
   };
 
-  const handleChangeFlagStatus = (item: LSData) => {
-    const episodes: LSData[] = getLSEpisodes();
+  const handleChangeFlagStatus = (item: IlSData) => {
+    const episodes: IlSData[] = getLSEpisodes();
     const episodeIndex = getLSEpisodes().findIndex(
       episode => episode.chosenEpisode == item.chosenEpisode
     );

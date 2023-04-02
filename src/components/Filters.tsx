@@ -9,21 +9,9 @@ import {
 import { FC } from 'react';
 import ICharacterFilter from 'models/ICharacterFilter';
 import ISpecies from 'models/ISpecies';
+import statuses from 'constants/Statuses';
+import genders from 'constants/Genderes';
 
-const optionsStatus = [
-  { title: 'All', value: 'All' },
-  { title: 'Alive', value: 'Alive' },
-  { title: 'Dead', value: 'Dead' },
-  { title: 'Unknown', value: 'unknown' },
-];
-
-const optionsGenders = [
-  { title: 'All', value: 'All' },
-  { title: 'Female', value: 'female' },
-  { title: 'Male', value: 'male' },
-  { title: 'Genderless', value: 'genderless' },
-  { title: 'Unknown', value: 'unknown' },
-];
 
 type Props = {
   filterCardsCallback: (value: string, key: keyof ICharacterFilter) => void;
@@ -54,10 +42,8 @@ const Filters: FC<Props> = ({ filterCardsCallback, filter }) => {
       }}
     >
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Species</InputLabel>
+        <InputLabel>Species</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
           label="Species"
           value={filter.species}
           onChange={handleChangeSpecies}
@@ -72,15 +58,13 @@ const Filters: FC<Props> = ({ filterCardsCallback, filter }) => {
         </Select>
       </FormControl>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Status</InputLabel>
+        <InputLabel>Status</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
           label="Status"
           value={filter.status}
           onChange={handleChangeStatus}
         >
-          {optionsStatus.map(item => {
+          {statuses.map(item => {
             return (
               <MenuItem key={item.title} value={item.value}>
                 {item.title}
@@ -90,15 +74,13 @@ const Filters: FC<Props> = ({ filterCardsCallback, filter }) => {
         </Select>
       </FormControl>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+        <InputLabel >Gender</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
           label="Gender"
           value={filter.gender}
           onChange={handleChangeGender}
         >
-          {optionsGenders.map(item => {
+          {genders.map(item => {
             return (
               <MenuItem key={item.title} value={item.value}>
                 {item.title}

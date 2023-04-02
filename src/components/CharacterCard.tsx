@@ -14,10 +14,6 @@ type Props = {
 };
 
 const CharacterCard: FC<Props> = ({ characterModel, dialogOpen }) => {
-  // const openDialog = (characterModel: ICharacterModel) => {
-  //   dialogOpen(characterModel);
-  // };
-
 
   return (
     <Box sx={{ width: { xs: '100%', sm: 258 } }}>

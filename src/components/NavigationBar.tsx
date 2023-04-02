@@ -12,8 +12,8 @@ import { useNavigate } from 'react-router-dom';
 import { Drawer, useMediaQuery } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import Urls from 'constants/Urls';
+import pages from 'constants/Pages';
 
-const pages = ['Characters', 'My watch list'];
 const NavigationBar = () => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const history = useNavigate();
@@ -27,18 +27,11 @@ const NavigationBar = () => {
     setOpenDrawer(false);
   };
 
-  const handleCloseNavMenu = (page: string) => {
-    console.log(page)
-    switch (page) {
-      case 'Characters':
-        history(Urls.characters);
-        break;
-      case 'My watch list':
-        history(Urls.watchList);
-        break;
-    }
+  const navigateAndCloseNaveBar = (page: string) => {
+    history(page)
     setOpenDrawer(false);
   };
+
   useEffect(() => {
     setOpenDrawer(false);
   }, [isDesktop]);
@@ -91,9 +84,9 @@ const NavigationBar = () => {
               flexDirection: 'column',
             }}
           >
-            {pages.map((item, index) => (
-              <Button key={index} onClick={()=>handleCloseNavMenu(item)}>
-                {item}
+            {pages.map((item,index) => (
+              <Button key={index} onClick={() =>navigateAndCloseNaveBar(item.value)}>
+                {item.title}
               </Button>
             ))}
           </Box>
@@ -115,7 +108,7 @@ const NavigationBar = () => {
         <Toolbar disableGutters>
           <Button
             sx={{ color: 'white', display: { xs: 'none', md: 'block' } }}
-            onClick={() => navigate('/characters')}
+            onClick={() => navigate(Urls.characters)}
           >
             <Typography
               variant="h6"
@@ -144,7 +137,7 @@ const NavigationBar = () => {
               <MenuIcon />
             </IconButton>
           </Box>
-          <Button onClick={() => handleCloseNavMenu(Urls.characters)}>
+          <Button onClick={() => navigateAndCloseNaveBar(Urls.characters)}>
             <Typography
               variant="h5"
               noWrap
@@ -169,17 +162,17 @@ const NavigationBar = () => {
               justifyContent: 'end',
             }}
           >
-            {pages.map(page => (
+            {pages.map((item,index) => (
               <Button
-                key={page}
-                onClick={event => handleCloseNavMenu(page)}
+                key={index}
+                onClick={() => navigateAndCloseNaveBar(item.value)}
                 sx={{
                   my: 2,
                   color: 'white',
                   display: { xs: 'none', md: 'block' },
                 }}
               >
-                {page}
+                {item.title}
               </Button>
             ))}
           </Box>

@@ -8,14 +8,15 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
-import { FC, useEffect, useState } from 'react';
+import { FC} from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { LSData } from './WatchList';
+import IlSData from 'models/ILSData';
+
 
 type Props = {
-  data: LSData[];
-  changeWatchedFlag: (item: LSData) => void;
-  removeEpisodeFromList: (item: LSData) => void;
+  data: IlSData[];
+  changeWatchedFlag: (item: IlSData) => void;
+  removeEpisodeFromList: (item: IlSData) => void;
 };
 
 const EpisodeList: FC<Props> = ({
@@ -27,8 +28,6 @@ const EpisodeList: FC<Props> = ({
     <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
       <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
         {data.map((value, index) => {
-          const labelId = `checkbox-list-label-${index}`;
-
           return (
             <ListItem
               key={index}
@@ -44,7 +43,6 @@ const EpisodeList: FC<Props> = ({
               disablePadding
             >
               <ListItemButton
-                role={undefined}
                 dense
                 onClick={() => changeWatchedFlag(value)}
               >
@@ -54,11 +52,9 @@ const EpisodeList: FC<Props> = ({
                     tabIndex={-1}
                     checked={value.watched}
                     disableRipple
-                    inputProps={{ 'aria-labelledby': labelId }}
                   />
                 </ListItemIcon>
                 <ListItemText
-                  id={labelId}
                   primary={value.chosenEpisode}
                   sx={{
                     textDecoration: value.watched ? 'line-through' : 'none',

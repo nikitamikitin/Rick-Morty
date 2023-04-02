@@ -13,6 +13,8 @@ import { FC } from 'react';
 import ICharacterModel from 'models/ICharacterModel';
 import moment from 'moment';
 import CloseIcon from '@mui/icons-material/Close';
+
+
 type Props = {
   characterInfo: ICharacterModel;
   open: boolean;
@@ -27,7 +29,6 @@ const CharacterDialogInfo: FC<Props> = ({ characterInfo, open, onClose }) => {
       fullScreen={fullScreen}
       open={open}
       onClose={onClose}
-      aria-labelledby="responsive-dialog-title"
     >
       <Box
         sx={{
