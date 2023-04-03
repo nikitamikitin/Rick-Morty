@@ -14,13 +14,76 @@ import CloseIcon from '@mui/icons-material/Close';
 import Urls from 'constants/Urls';
 import pages from 'constants/Pages';
 
+const styles={
+  drawer:{
+    width: { xs: '100%', sm: '50%' },
+    height: { xs: '100%', sm: '50%' },
+    '& .MuiPaper-root': { height: { xs: '100%', sm: '50%' } },
+  },
+  rootContainer:{
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexDirection: 'column',
+    height: '100%',
+  },
+  childRootContainer:{
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  typ:{
+    fontFamily: 'monospace',
+    fontWeight: 500,
+    letterSpacing: '.2rem',
+    color: 'inherit',
+    textDecoration: 'none',
+  },
+  container:{
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+  button:{ color: 'white', display: { xs: 'none', md: 'block' } },
+  buttonB:{
+    my: 2,
+    color: 'white',
+    display: { xs: 'none', md: 'block' },
+  },
+  typM:{
+    mr: 2,
+    fontFamily: 'monospace',
+    fontWeight: 700,
+    letterSpacing: '.3rem',
+    color: 'inherit',
+    textDecoration: 'none',
+  },
+  iconContainer:{ flexGrow: 1, display: { xs: 'flex', md: 'none' } },
+  typh5:{
+    mr: 2,
+    display: { xs: 'flex', md: 'none' },
+    flexGrow: 1,
+    fontFamily: 'monospace',
+    fontWeight: 700,
+    letterSpacing: '.3rem',
+    color: 'white',
+    textDecoration: 'none',
+  },
+  containerPagesB:{
+    flexGrow: 1,
+    display: { xs: 'none', md: 'flex' },
+    justifyContent: 'end',
+  },
+}
+
+
 const NavigationBar = () => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const history = useNavigate();
   const navigate = useNavigate();
 
   const isDesktop = useMediaQuery('(max-width: 900px)');
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpenNavMenu = () => {
     setOpenDrawer(true);
   };
   const closeDrawer = () => {
@@ -28,75 +91,52 @@ const NavigationBar = () => {
   };
 
   const navigateAndCloseNaveBar = (page: string) => {
-    history(page)
+    history(page);
     setOpenDrawer(false);
   };
 
   useEffect(() => {
     setOpenDrawer(false);
   }, [isDesktop]);
+
+
   return (
     <AppBar position="static">
       <Drawer
-        sx={{
-          width: { xs: '100%', sm: '50%' },
-          height: { xs: '100%', sm: '50%' },
-          '& .MuiPaper-root': { height: { xs: '100%', sm: '50%' } },
-        }}
+        sx={styles.drawer}
         anchor="top"
         open={openDrawer}
         onClose={() => closeDrawer()}
       >
         <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-around',
-            flexDirection: 'column',
-            height: '100%',
-          }}
+          sx={styles.rootContainer}
         >
           <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
+            sx={styles.childRootContainer}
           >
             <Typography
               variant="h6"
               noWrap
-              sx={{
-                fontFamily: 'monospace',
-                fontWeight: 500,
-                letterSpacing: '.2rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
+              sx={styles.typ}
             >
               Rick&Morty
             </Typography>
           </Box>
           <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              flexDirection: 'column',
-            }}
+            sx={styles.container}
           >
-            {pages.map((item,index) => (
-              <Button key={index} onClick={() =>navigateAndCloseNaveBar(item.value)}>
+            {pages.map((item, index) => (
+              <Button
+                key={index}
+                onClick={() => navigateAndCloseNaveBar(item.value)}
+              >
                 {item.title}
               </Button>
             ))}
           </Box>
 
           <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              flexDirection: 'column',
-            }}
+            sx={styles.container}
           >
             <IconButton autoFocus onClick={() => closeDrawer()}>
               <CloseIcon />
@@ -107,26 +147,19 @@ const NavigationBar = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Button
-            sx={{ color: 'white', display: { xs: 'none', md: 'block' } }}
+            sx={styles.button}
             onClick={() => navigate(Urls.characters)}
           >
             <Typography
               variant="h6"
               noWrap
-              sx={{
-                mr: 2,
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
+              sx={styles.typM}
             >
               Rick&Morty
             </Typography>
           </Button>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={styles.iconContainer}>
             <IconButton
               size="large"
               aria-controls="menu-appbar"
@@ -141,36 +174,19 @@ const NavigationBar = () => {
             <Typography
               variant="h5"
               noWrap
-              sx={{
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'white',
-                textDecoration: 'none',
-              }}
+              sx={styles.typh5}
             >
               Rick&Morty
             </Typography>
           </Button>
           <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: 'none', md: 'flex' },
-              justifyContent: 'end',
-            }}
+            sx={styles.containerPagesB}
           >
-            {pages.map((item,index) => (
+            {pages.map((item, index) => (
               <Button
                 key={index}
                 onClick={() => navigateAndCloseNaveBar(item.value)}
-                sx={{
-                  my: 2,
-                  color: 'white',
-                  display: { xs: 'none', md: 'block' },
-                }}
+                sx={styles.buttonB}
               >
                 {item.title}
               </Button>

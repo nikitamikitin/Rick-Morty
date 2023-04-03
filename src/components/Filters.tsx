@@ -12,11 +12,21 @@ import ISpecies from 'models/ISpecies';
 import statuses from 'constants/Statuses';
 import genders from 'constants/Genderes';
 
-
 type Props = {
   filterCardsCallback: (value: string, key: keyof ICharacterFilter) => void;
   filter: ICharacterFilter;
 };
+const styles={
+  root:
+    {
+      minWidth: 120,
+      display: 'flex',
+      flexDirection: { xs: 'column', sm: 'row' },
+      gap: '16px ',
+      padding: '16px',
+    }
+  
+}
 
 const Filters: FC<Props> = ({ filterCardsCallback, filter }) => {
   const handleChangeSpecies = (event: SelectChangeEvent) => {
@@ -33,13 +43,7 @@ const Filters: FC<Props> = ({ filterCardsCallback, filter }) => {
 
   return (
     <Box
-      sx={{
-        minWidth: 120,
-        display: 'flex',
-        flexDirection: { xs: 'column', sm: 'row' },
-        gap: '16px ',
-        padding: '16px',
-      }}
+      sx={styles.root}
     >
       <FormControl fullWidth>
         <InputLabel>Species</InputLabel>
@@ -74,7 +78,7 @@ const Filters: FC<Props> = ({ filterCardsCallback, filter }) => {
         </Select>
       </FormControl>
       <FormControl fullWidth>
-        <InputLabel >Gender</InputLabel>
+        <InputLabel>Gender</InputLabel>
         <Select
           label="Gender"
           value={filter.gender}

@@ -8,10 +8,9 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
-import { FC} from 'react';
+import { FC } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
-import IlSData from 'models/ILSData';
-
+import IlSData from 'models/IlSData';
 
 type Props = {
   data: IlSData[];
@@ -19,14 +18,20 @@ type Props = {
   removeEpisodeFromList: (item: IlSData) => void;
 };
 
+const styles={
+  root:{ width: '100%', display: 'flex', justifyContent: 'center' },
+  list:{ width: '100%', bgcolor: 'background.paper' }
+}
+
+
 const EpisodeList: FC<Props> = ({
   data,
   changeWatchedFlag,
   removeEpisodeFromList,
 }) => {
   return (
-    <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-      <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+    <Box sx={styles.root}>
+      <List sx={styles.list}>
         {data.map((value, index) => {
           return (
             <ListItem
@@ -42,10 +47,7 @@ const EpisodeList: FC<Props> = ({
               }
               disablePadding
             >
-              <ListItemButton
-                dense
-                onClick={() => changeWatchedFlag(value)}
-              >
+              <ListItemButton dense onClick={() => changeWatchedFlag(value)}>
                 <ListItemIcon>
                   <Checkbox
                     edge="start"

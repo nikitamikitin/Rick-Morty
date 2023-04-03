@@ -3,14 +3,36 @@ import { useEffect, useState } from 'react';
 import IEpisodeModel from 'models/IEpisodeModel';
 import BaseAPI from 'services/api/BaseApi';
 import EpisodeList from 'components/EpisodeList';
-import IlSData from 'models/ILSData';
+import IlSData from 'models/IlSData';
+import getLSEpisodes from 'tools/getLSEpisodes';
 
+const styles={
+  root:{
+    width: '100%',
+    padding: '15px',
+    display: 'flex',
+    justifyContent: 'center',
+  },
 
+  
+  autocomplete:{ width: '100%' },
+  addBtn:{ width: '60%' },
+  container:{
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '15px',
+  },
+  containerAutoComplete:{
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-between',
+    gap: '15px',
+  }
 
-const getLSEpisodes = (): IlSData[] => {
-  const localStorageData = localStorage.getItem('episodes');
-  return localStorageData ? JSON.parse(localStorageData) : [];
-};
+  
+}
 
 const WatchList = () => {
   const [listOfEpisodeNames, setListOfEpisodeNames] = useState<string[]>([]);
@@ -82,12 +104,7 @@ const WatchList = () => {
   };
   return (
     <Box
-      sx={{
-        width: '100%',
-        padding: '15px',
-        display: 'flex',
-        justifyContent: 'center',
-      }}
+      sx={styles.root}
     >
       <Box
         sx={{
@@ -99,37 +116,25 @@ const WatchList = () => {
         }}
       >
         <Box
-          sx={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '15px',
-          }}
+          sx={styles.container}
         >
           <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              width: '100%',
-              justifyContent: 'space-between',
-              gap: '15px',
-            }}
+            sx={styles.containerAutoComplete}
           >
             <Autocomplete
               disablePortal
-              id="combo-box-demo"
               options={[...listOfEpisodeNames, '']}
               getOptionLabel={option => option}
               value={chosenEpisode}
               filterSelectedOptions
-              sx={{ width: '100%' }}
+              sx={styles.autocomplete}
               onChange={(event: any, newValue: string | null) => {
                 handleChoseEpisode(event, newValue);
               }}
               renderInput={params => <TextField {...params} label="Episode" />}
             />
             <Button
-              sx={{ width: '60%' }}
+              sx={styles.addBtn}
               disabled={!chosenEpisode}
               variant="contained"
               onClick={() => addToLocalStorage()}
@@ -139,12 +144,7 @@ const WatchList = () => {
           </Box>
         </Box>
         <Box
-          sx={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '15px',
-          }}
+          sx={styles.container}
         >
           <EpisodeList
             data={lsEpisodes}

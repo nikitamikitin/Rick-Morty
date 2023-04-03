@@ -12,6 +12,7 @@ export default defineConfig({
       models: `${path.resolve(__dirname, './src/models')}`,
       constants: `${path.resolve(__dirname, './src/constants/')}`,
       services: `${path.resolve(__dirname, './src/services/')}`,
+      tools: `${path.resolve(__dirname, './src/tools/')}`,
       hooks: `${path.resolve(__dirname, './src/services/hooks')}`,
     },
   },

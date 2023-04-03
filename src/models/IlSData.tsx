@@ -1,6 +1,6 @@
 interface IlSData {
-    chosenEpisode: string;
-    watched: boolean;
-  }
+  chosenEpisode: string;
+  watched: boolean;
+}
 
-export default IlSData  
+export default IlSData;
