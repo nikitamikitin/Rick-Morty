@@ -14,43 +14,43 @@ import CloseIcon from '@mui/icons-material/Close';
 import Urls from 'constants/Urls';
 import pages from 'constants/Pages';
 
-const styles={
-  drawer:{
+const styles = {
+  drawer: {
     width: { xs: '100%', sm: '50%' },
     height: { xs: '100%', sm: '50%' },
     '& .MuiPaper-root': { height: { xs: '100%', sm: '50%' } },
   },
-  rootContainer:{
+  rootContainer: {
     display: 'flex',
     justifyContent: 'space-around',
     flexDirection: 'column',
     height: '100%',
   },
-  childRootContainer:{
+  childRootContainer: {
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
   },
-  typ:{
+  typ: {
     fontFamily: 'monospace',
     fontWeight: 500,
     letterSpacing: '.2rem',
     color: 'inherit',
     textDecoration: 'none',
   },
-  container:{
+  container: {
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column',
   },
-  button:{ color: 'white', display: { xs: 'none', md: 'block' } },
-  buttonB:{
+  button: { color: 'white', display: { xs: 'none', md: 'block' } },
+  buttonB: {
     my: 2,
     color: 'white',
     display: { xs: 'none', md: 'block' },
   },
-  typM:{
+  typM: {
     mr: 2,
     fontFamily: 'monospace',
     fontWeight: 700,
@@ -58,8 +58,8 @@ const styles={
     color: 'inherit',
     textDecoration: 'none',
   },
-  iconContainer:{ flexGrow: 1, display: { xs: 'flex', md: 'none' } },
-  typh5:{
+  iconContainer: { flexGrow: 1, display: { xs: 'flex', md: 'none' } },
+  typh5: {
     mr: 2,
     display: { xs: 'flex', md: 'none' },
     flexGrow: 1,
@@ -69,13 +69,12 @@ const styles={
     color: 'white',
     textDecoration: 'none',
   },
-  containerPagesB:{
+  containerPagesB: {
     flexGrow: 1,
     display: { xs: 'none', md: 'flex' },
     justifyContent: 'end',
   },
-}
-
+};
 
 const NavigationBar = () => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
@@ -99,7 +98,6 @@ const NavigationBar = () => {
     setOpenDrawer(false);
   }, [isDesktop]);
 
-
   return (
     <AppBar position="static">
       <Drawer
@@ -108,23 +106,13 @@ const NavigationBar = () => {
         open={openDrawer}
         onClose={() => closeDrawer()}
       >
-        <Box
-          sx={styles.rootContainer}
-        >
-          <Box
-            sx={styles.childRootContainer}
-          >
-            <Typography
-              variant="h6"
-              noWrap
-              sx={styles.typ}
-            >
+        <Box sx={styles.rootContainer}>
+          <Box sx={styles.childRootContainer}>
+            <Typography variant="h6" noWrap sx={styles.typ}>
               Rick&Morty
             </Typography>
           </Box>
-          <Box
-            sx={styles.container}
-          >
+          <Box sx={styles.container}>
             {pages.map((item, index) => (
               <Button
                 key={index}
@@ -135,9 +123,7 @@ const NavigationBar = () => {
             ))}
           </Box>
 
-          <Box
-            sx={styles.container}
-          >
+          <Box sx={styles.container}>
             <IconButton autoFocus onClick={() => closeDrawer()}>
               <CloseIcon />
             </IconButton>
@@ -146,15 +132,8 @@ const NavigationBar = () => {
       </Drawer>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Button
-            sx={styles.button}
-            onClick={() => navigate(Urls.characters)}
-          >
-            <Typography
-              variant="h6"
-              noWrap
-              sx={styles.typM}
-            >
+          <Button sx={styles.button} onClick={() => navigate(Urls.characters)}>
+            <Typography variant="h6" noWrap sx={styles.typM}>
               Rick&Morty
             </Typography>
           </Button>
@@ -171,17 +150,11 @@ const NavigationBar = () => {
             </IconButton>
           </Box>
           <Button onClick={() => navigateAndCloseNaveBar(Urls.characters)}>
-            <Typography
-              variant="h5"
-              noWrap
-              sx={styles.typh5}
-            >
+            <Typography variant="h5" noWrap sx={styles.typh5}>
               Rick&Morty
             </Typography>
           </Button>
-          <Box
-            sx={styles.containerPagesB}
-          >
+          <Box sx={styles.containerPagesB}>
             {pages.map((item, index) => (
               <Button
                 key={index}

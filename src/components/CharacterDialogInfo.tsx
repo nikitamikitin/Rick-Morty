@@ -20,27 +20,26 @@ type Props = {
   onClose: () => void;
 };
 
-
-const styles={
-  root:{
+const styles = {
+  root: {
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-between',
   },
-  dialogContent:{
+  dialogContent: {
     display: 'flex',
     flexDirection: { xs: 'column', sm: 'row' },
     alignItems: { xs: 'center' },
     gap: '10px',
   },
-  imageContainer:{
+  imageContainer: {
     height: 300,
     width: 300,
     maxHeight: { xs: 300, md: 300 },
     maxWidth: { xs: 300, md: 300 },
   },
-  dialogContentConatainer:{
+  dialogContentConatainer: {
     height: 300,
     display: 'flex',
     flexDirection: 'column',
@@ -48,20 +47,15 @@ const styles={
     alignItems: { xs: 'center', sm: 'start' },
     width: { xs: '100%' },
   },
-}
-
+};
 
 const CharacterDialogInfo: FC<Props> = ({ characterInfo, open, onClose }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <Dialog fullScreen={fullScreen} open={open} onClose={onClose}>
-      <Box
-        sx={styles.root}
-      >
-        <DialogTitle textAlign="center">
-          {'Character Information'}
-        </DialogTitle>
+      <Box sx={styles.root}>
+        <DialogTitle textAlign="center">{'Character Information'}</DialogTitle>
         <DialogActions>
           <IconButton autoFocus onClick={() => onClose()}>
             <CloseIcon />
@@ -69,18 +63,14 @@ const CharacterDialogInfo: FC<Props> = ({ characterInfo, open, onClose }) => {
         </DialogActions>
       </Box>
 
-      <DialogContent
-        sx={styles.dialogContent}
-      >
+      <DialogContent sx={styles.dialogContent}>
         <Box
           component="img"
           sx={styles.imageContainer}
           alt={characterInfo?.name}
           src={characterInfo?.image}
         />
-        <Box
-          sx={styles.dialogContentConatainer}
-        >
+        <Box sx={styles.dialogContentConatainer}>
           <DialogContentText>Name: {characterInfo?.name}</DialogContentText>
           <DialogContentText>Gender: {characterInfo?.gender}</DialogContentText>
           <DialogContentText>

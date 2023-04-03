@@ -5,11 +5,11 @@ type Props = {
   count: number;
 };
 
-const styles={
-  root:{
-    width: { xs: '100%', sm: 258 }
-  }
-}
+const styles = {
+  root: {
+    width: { xs: '100%', sm: 258 },
+  },
+};
 const SkeletonRectangular: FC<Props> = ({ count }) => {
   return (
     <>

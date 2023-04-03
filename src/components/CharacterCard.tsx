@@ -13,26 +13,25 @@ type Props = {
   dialogOpen: (characterModel: ICharacterModel) => void;
 };
 
-
-const styles={
-  root:{
-    width: { xs: '100%', sm: 258 }
+const styles = {
+  root: {
+    width: { xs: '100%', sm: 258 },
   },
-  boxContent:{
-    height: { sm: '100%' }, 
-    width: '100%' 
+  boxContent: {
+    height: { sm: '100%' },
+    width: '100%',
   },
-  cardContent:{
-    display: 'flex', flexDirection: 'column', gap: '10px' 
+  cardContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
   },
-  typName:{
-    height: '30px' 
+  typName: {
+    height: '30px',
   },
-
-}
+};
 
 const CharacterCard: FC<Props> = ({ characterModel, dialogOpen }) => {
-
   return (
     <Box sx={styles.root}>
       {characterModel && (
@@ -44,9 +43,7 @@ const CharacterCard: FC<Props> = ({ characterModel, dialogOpen }) => {
               src={characterModel.image}
               title={characterModel.name}
             />
-            <CardContent
-              sx={styles.cardContent}
-            >
+            <CardContent sx={styles.cardContent}>
               <Typography gutterBottom sx={styles.typName}>
                 {characterModel.name}
               </Typography>
@@ -62,4 +59,3 @@ const CharacterCard: FC<Props> = ({ characterModel, dialogOpen }) => {
 };
 
 export default CharacterCard;
-

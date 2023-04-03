@@ -18,11 +18,10 @@ type Props = {
   removeEpisodeFromList: (item: IlSData) => void;
 };
 
-const styles={
-  root:{ width: '100%', display: 'flex', justifyContent: 'center' },
-  list:{ width: '100%', bgcolor: 'background.paper' }
-}
-
+const styles = {
+  root: { width: '100%', display: 'flex', justifyContent: 'center' },
+  list: { width: '100%', bgcolor: 'background.paper' },
+};
 
 const EpisodeList: FC<Props> = ({
   data,

@@ -6,33 +6,30 @@ import EpisodeList from 'components/EpisodeList';
 import IlSData from 'models/IlSData';
 import getLSEpisodes from 'tools/getLSEpisodes';
 
-const styles={
-  root:{
+const styles = {
+  root: {
     width: '100%',
     padding: '15px',
     display: 'flex',
     justifyContent: 'center',
   },
 
-  
-  autocomplete:{ width: '100%' },
-  addBtn:{ width: '60%' },
-  container:{
+  autocomplete: { width: '100%' },
+  addBtn: { width: '60%' },
+  container: {
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
     gap: '15px',
   },
-  containerAutoComplete:{
+  containerAutoComplete: {
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-between',
     gap: '15px',
-  }
-
-  
-}
+  },
+};
 
 const WatchList = () => {
   const [listOfEpisodeNames, setListOfEpisodeNames] = useState<string[]>([]);
@@ -103,9 +100,7 @@ const WatchList = () => {
     setLSEpisodes(getLSEpisodes());
   };
   return (
-    <Box
-      sx={styles.root}
-    >
+    <Box sx={styles.root}>
       <Box
         sx={{
           display: 'flex',
@@ -115,12 +110,8 @@ const WatchList = () => {
           gap: '16px',
         }}
       >
-        <Box
-          sx={styles.container}
-        >
-          <Box
-            sx={styles.containerAutoComplete}
-          >
+        <Box sx={styles.container}>
+          <Box sx={styles.containerAutoComplete}>
             <Autocomplete
               disablePortal
               options={[...listOfEpisodeNames, '']}
@@ -143,9 +134,7 @@ const WatchList = () => {
             </Button>
           </Box>
         </Box>
-        <Box
-          sx={styles.container}
-        >
+        <Box sx={styles.container}>
           <EpisodeList
             data={lsEpisodes}
             changeWatchedFlag={handleChangeFlagStatus}

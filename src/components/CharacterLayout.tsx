@@ -8,6 +8,7 @@ import Filters from 'components/Filters';
 import getDefaultFilter from 'constants/defaultFilter';
 import SkeletonRectangular from 'components/SceletonRectangular';
 import useGetCharacters from 'services/hooks/useGetCharacters';
+import CharacterList from './CharacterList';
 
 const CharacterLayout = () => {
   const [chosenCharacter, setChosenCharacter] = useState<ICharacterModel>();
@@ -55,33 +56,8 @@ const CharacterLayout = () => {
         </Box>
       );
     }
-    return (
-      <>
-        {characterList?.map(item => {
-          return (
-            <CharacterCard
-              characterModel={item}
-              dialogOpen={handleOpenDialogOpen}
-              key={item.id}
-            ></CharacterCard>
-          );
-        })}
-        <Grid
-          container
-          justifyContent="center"
-          alignItems="center"
-          marginTop={4}
-        >
-          <Stack marginBottom={3}>
-            <Pagination
-              count={characterInfo?.pages}
-              page={page}
-              onChange={handleChange}
-            />
-          </Stack>
-        </Grid>
-      </>
-    );
+    return <CharacterList characterList={characterList} characterInfo={characterInfo}  page={page} handleChange={handleChange} handleOpenDialogOpen={handleOpenDialogOpen}></CharacterList>
+
   };
 
   return (
